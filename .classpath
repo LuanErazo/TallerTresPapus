@@ -3,5 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/core.jar"/>
+	<classpathentry kind="lib" path="libs/LeapMotion/LeapJava.jar"/>
+	<classpathentry kind="lib" path="libs/LeapMotion/LeapMotionForProcessing.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

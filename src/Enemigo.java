@@ -13,6 +13,7 @@ public class Enemigo extends Thread {
 
 	public Enemigo() {
 		app = Main.app;
+		tirables = new ArrayList<Proyectil>();
 	}
 	
 	public void mover(){
@@ -23,8 +24,12 @@ public class Enemigo extends Thread {
 		
 	}
 	
-	public void tirarBomba(){
-		
+	public Proyectil tirarBomba(){
+		Proyectil ob = null;
+		for (int i = 0; i < tirables.size(); i++) {
+			ob = tirables.get(i);
+		}
+		return ob;
 	}
 	
 	public void contador(){
