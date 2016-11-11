@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PVector;
-// julio vino...
 public class Player extends Thread {
 	private PApplet app;
 	private PVector pos;
@@ -17,7 +16,6 @@ public class Player extends Thread {
 	}
 	
 	public void display(){
-	
 	}
 	
 	public void sumarPuntaje(ArrayList<Proyectil> lista){
