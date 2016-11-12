@@ -16,6 +16,7 @@ public class Carga {
 	public static PImage inicio;
 
 	public Carga() {
+		app = Main.app;
 		carro = app.loadImage("../data/imagenMJ2.png");
 		player = app.loadImage("../data/carrito.png");
 		enemigo = app.loadImage("../data/enemigo.png");
