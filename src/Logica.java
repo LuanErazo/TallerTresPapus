@@ -21,32 +21,44 @@ public class Logica {
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
 	private int cambio = 3;
 	private Enemigo en;
-	private Proyectil bala;
 	private PFont fuente;
+
+	// Aqui van todas las variables u objetos de prueba
+	private Proyectil bala;
 
 	public Logica() {
 		app = Main.app;
-		datos = new Carga();
-		leap = new LeapMotion(app);
+		subirObjetos();
 		der = leap.getRightHand();
 		izq = leap.getLeftHand();
 		v = new PVector(100, 100);
-		jugador = new Player(v);
+
 		CargaImg();
-		en = new Enemigo();
-		bala = new Proyectil();
+
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 
 	}
-/**
- * metodo que iguala todas las imagenes desde el la carga de datos
- */
+
+	/**
+	 * metodo que iguala todas las imagenes desde el la carga de datos
+	 */
 	private void CargaImg() {
 		inicio = Carga.inicio;
 		instrucciones = Carga.instrucciones;
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
 		bomba = Carga.bomba;
+	}
+
+	/**
+	 * metoddo donde inicializamos todos los objetos que se van a usar
+	 */
+	private void subirObjetos() {
+		datos = new Carga();
+		leap = new LeapMotion(app);
+		jugador = new Player(v);
+		en = new Enemigo();
+		bala = new Proyectil();
 	}
 
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
@@ -77,10 +89,7 @@ public class Logica {
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
-			// Cargo la img en la lógica
-			app.image(bomba, bala.getLoc().x, bala.getLoc().y);
-			// en.start();
-
+			bala.display();
 			break;
 		}
 		leapMotionPlz();
