@@ -84,7 +84,8 @@ public class Enemigo extends Thread {
 
 	public Proyectil tirarBomba() {
 		for (Proyectil proyectil : preTirables) {
-			proyectil.setPos(pos);
+			//Cambie set por get
+			proyectil.getPos();
 		}
 			return preTirables.get((int) app.random(4));		
 	}
