@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -9,6 +10,7 @@ public class Enemigo extends Thread {
 	private PApplet app;
 	private PVector pos, vel;
 	private boolean bomba;
+	private boolean cambiodirec;
 	private int min;
 	private ArrayList<Proyectil> tirables;
 	private PImage enemigo;
@@ -16,9 +18,9 @@ public class Enemigo extends Thread {
 	public Enemigo() {
 		app = Main.app;
 		tirables = new ArrayList<Proyectil>();
-		enemigo  = Carga.enemigo;
-		vel  = new PVector(10 , 0);
-		pos = new PVector(50 , 0);
+		enemigo = Carga.enemigo;
+		vel = new PVector(1, 0);
+		pos = new PVector(50, 100);
 		start();
 	}
 
@@ -26,7 +28,7 @@ public class Enemigo extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				sleep(500);
+				sleep(2);
 				mover();
 			} catch (Exception e) {
 
@@ -35,16 +37,13 @@ public class Enemigo extends Thread {
 	}
 
 	public void mover() {
-		
-		  pos.add(vel);
-		  if ((pos.x > app.width) || (pos.x < 0)) {
-		    vel.x = vel.x * -1;
-		    //Aquí va la wea que te digo para que rote la imagen del enemigo.
-		    app.pushMatrix();
-		    app. rotateY(180);
-		    app.popMatrix();
-		  }
-		
+
+		pos.add(vel);
+		if ((pos.x > app.width + enemigo.width) || (pos.x < 0 - enemigo.width)) {
+			vel.x = vel.x * -1;
+			cambiodirec = !cambiodirec;
+		}
+
 	}
 
 	public PVector getPos() {
@@ -54,11 +53,19 @@ public class Enemigo extends Thread {
 	public void setPos(PVector pos) {
 		this.pos = pos;
 	}
-
+/**
+ * metodo que cambio y pinta la direccion del pj
+ */
 	public void display() {
+		app.imageMode(PConstants.CENTER);
+		app.pushMatrix();
+		app.translate(pos.x, pos.y);
+		if (!cambiodirec) {
+			app.rotateY(PConstants.PI);
+		}
+		app.image(enemigo, 0, 0);
+		app.popMatrix();
 
-		app.image(enemigo, pos.x, pos.y);
-		
 	}
 
 	public Proyectil tirarBomba() {

@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -31,15 +32,21 @@ public class Logica {
 		izq = leap.getLeftHand();
 		v = new PVector(100, 100);
 		jugador = new Player(v);
+		CargaImg();
+		en = new Enemigo();
+		bala = new Proyectil();
+		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
+
+	}
+/**
+ * metodo que iguala todas las imagenes desde el la carga de datos
+ */
+	private void CargaImg() {
 		inicio = Carga.inicio;
 		instrucciones = Carga.instrucciones;
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
-		enemigo = Carga.enemigo;
 		bomba = Carga.bomba;
-		en = new Enemigo();
-		bala = new Proyectil();
-		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 	}
 
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
@@ -50,6 +57,7 @@ public class Logica {
 	}
 
 	public void draww() {
+		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
 		case 0:
 
@@ -68,10 +76,10 @@ public class Logica {
 			break;
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
-			app.image(enemigo, en.getPos().x,en.getPos().y);
-			//Cargo la img en la lógica
+			en.display();
+			// Cargo la img en la lógica
 			app.image(bomba, bala.getLoc().x, bala.getLoc().y);
-//			en.start();
+			// en.start();
 
 			break;
 		}
