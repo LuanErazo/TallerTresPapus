@@ -7,7 +7,7 @@ import processing.core.PVector;
 public class Enemigo extends Thread {
 
 	private PApplet app;
-	private PVector pos, vel, acc;
+	private PVector pos, vel;
 	private boolean bomba;
 	private int min;
 	private ArrayList<Proyectil> tirables;
@@ -17,16 +17,16 @@ public class Enemigo extends Thread {
 		app = Main.app;
 		tirables = new ArrayList<Proyectil>();
 		enemigo  = Carga.enemigo;
-		vel  = new PVector(0, 0);
-		acc  = new PVector(0, 0);
-		pos = new PVector(pos.x, pos.y);
+		vel  = new PVector(10 , 0);
+		pos = new PVector(50 , 0);
+		start();
 	}
 
 	@Override
 	public void run() {
 		while (true) {
 			try {
-				sleep(1000);
+				sleep(500);
 				mover();
 			} catch (Exception e) {
 
@@ -36,9 +36,23 @@ public class Enemigo extends Thread {
 
 	public void mover() {
 		
-	    vel.add(acc);
-	    pos.add(vel);
+		  pos.add(vel);
+		  if ((pos.x > app.width) || (pos.x < 0)) {
+		    vel.x = vel.x * -1;
+		    //Aquí va la wea que te digo para que rote la imagen del enemigo.
+		    app.pushMatrix();
+		    app. rotateY(180);
+		    app.popMatrix();
+		  }
 		
+	}
+
+	public PVector getPos() {
+		return pos;
+	}
+
+	public void setPos(PVector pos) {
+		this.pos = pos;
 	}
 
 	public void display() {

@@ -16,8 +16,9 @@ public class Logica {
 	private Hand der;
 	private Hand izq;
 	private PVector v;
-	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo;
-	private int cambio = 0;
+	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo;
+	private int cambio = 3;
+	private Enemigo en;
 
 	public Logica() {
 		app = Main.app;
@@ -31,6 +32,8 @@ public class Logica {
 		instrucciones = Carga.instrucciones;
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
+		enemigo = Carga.enemigo;
+		en = new Enemigo();
 	}
 
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
@@ -60,6 +63,8 @@ public class Logica {
 		case 3:
 
 			app.image(fondoEnemigo, 0, 0);
+			app.image(enemigo, en.getPos().x,en.getPos().y);
+//			en.start();
 
 			break;
 		}
