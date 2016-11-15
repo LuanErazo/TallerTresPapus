@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -19,6 +20,7 @@ public class Logica {
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo;
 	private int cambio = 3;
 	private Enemigo en;
+	private PFont fuente;
 
 	public Logica() {
 		app = Main.app;
@@ -34,6 +36,7 @@ public class Logica {
 		fondoEnemigo = Carga.fondoEnemigo;
 		enemigo = Carga.enemigo;
 		en = new Enemigo();
+		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 	}
 
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
@@ -61,7 +64,6 @@ public class Logica {
 
 			break;
 		case 3:
-
 			app.image(fondoEnemigo, 0, 0);
 			app.image(enemigo, en.getPos().x,en.getPos().y);
 //			en.start();
