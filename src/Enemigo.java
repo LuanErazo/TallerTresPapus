@@ -12,16 +12,37 @@ public class Enemigo extends Thread {
 	private boolean bomba;
 	private boolean cambiodirec;
 	private int min;
-	private ArrayList<Proyectil> tirables;
+//	private ArrayList<Proyectil> tirables;
+	private ArrayList<Proyectil> preTirables;
+
 	private PImage enemigo;
 
 	public Enemigo() {
 		app = Main.app;
-		tirables = new ArrayList<Proyectil>();
+//		tirables = new ArrayList<Proyectil>();
+		preTirables = new ArrayList<Proyectil>();
 		enemigo = Carga.enemigo;
 		vel = new PVector(1, 0);
 		pos = new PVector(50, 100);
+		arrayTirables();
+//		for (int i = 0; i < 10; i++) {
+//			tirables.add(preTirables.get((int)app.random(4)));
+//		}
 		start();
+	}
+
+	/**
+	 * metodo que carga los proyectiles para que al generar un random las
+	 * probabilidades sean correctas
+	 */
+	private void arrayTirables() {
+		preTirables.add(new Bomba());
+		preTirables.add(new Bomba());
+		preTirables.add(new Sparkie());
+		preTirables.add(new Sparkie());
+		preTirables.add(new SparkieReal());
+		
+		
 	}
 
 	@Override
@@ -46,16 +67,9 @@ public class Enemigo extends Thread {
 
 	}
 
-	public PVector getPos() {
-		return pos;
-	}
-
-	public void setPos(PVector pos) {
-		this.pos = pos;
-	}
-/**
- * metodo que cambio y pinta la direccion del pj
- */
+	/**
+	 * metodo que cambio y pinta la direccion del pj
+	 */
 	public void display() {
 		app.imageMode(PConstants.CENTER);
 		app.pushMatrix();
@@ -69,14 +83,18 @@ public class Enemigo extends Thread {
 	}
 
 	public Proyectil tirarBomba() {
-		Proyectil ob = null;
-		for (int i = 0; i < tirables.size(); i++) {
-			ob = tirables.get(i);
+		for (Proyectil proyectil : preTirables) {
+			proyectil.setPos(pos);
 		}
-		return ob;
+			return preTirables.get((int) app.random(4));		
 	}
-
+/**
+ * metodo que agrega cada segundo un nuevo elemtno para que el enemigo tire
+ */
 	public void contador() {
+//		if (app.frameCount % 60 * 1 == 0) {
+//			tirables.add(preTirables.get((int) app.random(4)));
+//		}
 
 	}
 

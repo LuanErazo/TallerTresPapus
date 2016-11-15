@@ -4,6 +4,8 @@ import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
 
+import java.util.ArrayList;
+
 import com.leapmotion.leap.Leap;
 import ddf.minim.Minim;
 import de.voidplus.leapmotion.Hand;
@@ -22,6 +24,7 @@ public class Logica {
 	private int cambio = 3;
 	private Enemigo en;
 	private PFont fuente;
+	private ArrayList<Proyectil> proyectiles;
 
 	// Aqui van todas las variables u objetos de prueba
 	private Proyectil bala;
@@ -29,6 +32,7 @@ public class Logica {
 	public Logica() {
 		app = Main.app;
 		subirObjetos();
+		proyectiles = new ArrayList<Proyectil>();
 		der = leap.getRightHand();
 		izq = leap.getLeftHand();
 		v = new PVector(100, 100);
@@ -89,7 +93,13 @@ public class Logica {
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
-			bala.display();
+			timer();
+			if (proyectiles.size() >0) {
+				for (Proyectil proyectil : proyectiles) {
+					proyectil.display();
+				}
+				
+			}
 			break;
 		}
 		leapMotionPlz();
@@ -99,6 +109,12 @@ public class Logica {
 		// izq.getPalmPosition().y);
 		HUD();
 
+	}
+
+	private void timer() {
+		if (app.frameCount % 60 == 0) {
+			proyectiles.add(en.tirarBomba());
+		}
 	}
 
 	public void leapMotionPlz() {

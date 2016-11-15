@@ -1,3 +1,5 @@
+import com.sun.javafx.geom.PickRay;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -9,21 +11,20 @@ public class Proyectil {
 	private PVector pos;// localizacion
 	private PVector vel;// velocidad
 	private PVector gravity;// gravedad
-	private PImage bomba;
+	protected PImage selecta;
 
 	protected int puntaje;
 
 	public Proyectil() {
 		app = Main.app;
 		// Cargue la img
-		bomba = Carga.bomba;
 		vel = new PVector(1.5f, 1.5f); // La f al final le dice al programa que es un flotante, sin necesidad de cast
-		pos = new PVector(app.width/2, 100);
+		pos = new PVector();
 		gravity = new PVector(0, 0.2f);
 
 	}
 
-	private void mover() {
+	public void mover() {
 		// agrega velocidad a la posicion
 		pos.add(vel);
 		// agrega gravedad a la velocidad
@@ -41,20 +42,20 @@ public class Proyectil {
 	}
 
 	public void display() {
-		// agregue esto
 		mover();
+		// agregue esto
 		app.imageMode(PConstants.CENTER);
-		app.image(bomba, pos.x, pos.y);
+		app.image(selecta, pos.x, pos.y);
 	}
 
 	/*
 	 * cree getters y setters =======================================
 	 */
-	public PVector getLoc() {
+	public PVector getPos() {
 		return pos;
 	}
 
-	public void setLoc(PVector loc) {
+	public void setPos(PVector loc) {
 		this.pos = loc;
 	}
 	// ============================================
