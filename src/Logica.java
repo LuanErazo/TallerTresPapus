@@ -17,9 +17,10 @@ public class Logica {
 	private Hand der;
 	private Hand izq;
 	private PVector v;
-	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo;
+	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
 	private int cambio = 3;
 	private Enemigo en;
+	private Proyectil bala;
 	private PFont fuente;
 
 	public Logica() {
@@ -35,7 +36,9 @@ public class Logica {
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
 		enemigo = Carga.enemigo;
+		bomba = Carga.bomba;
 		en = new Enemigo();
+		bala = new Proyectil();
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 	}
 
@@ -66,6 +69,8 @@ public class Logica {
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			app.image(enemigo, en.getPos().x,en.getPos().y);
+			//Cargo la img en la lógica
+			app.image(bomba, bala.getLoc().x, bala.getLoc().y);
 //			en.start();
 
 			break;

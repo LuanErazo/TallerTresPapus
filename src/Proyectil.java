@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PVector;
 
 public class Proyectil {
@@ -10,12 +11,14 @@ public class Proyectil {
 	private PVector acc;// aceleracion
 	private PVector gravity;// gravedad
 	private float mass;// masa
+	private PImage bomba;
 
 	protected int puntaje;
 
 	public Proyectil() {
 		app = Main.app;
-		// bomba = Carga.bomba;
+		//Cargue la img
+		bomba = Carga.bomba;
 		vel = new PVector((float) 1.5, (float) 1.5);
 		loc = new PVector(100, 100);
 		acc = new PVector(0, 0);
@@ -29,6 +32,8 @@ public class Proyectil {
 		app.strokeWeight(2);
 		app.fill(127);
 		app.ellipse(loc.x, loc.y, 48, 48);
+		//agregue esto
+		app.image(bomba, loc.x, loc.y);
 	}
 
 	public void mover() {
@@ -50,4 +55,16 @@ public class Proyectil {
 	public void display() {
 
 	}
+
+	/* cree getters y setters
+	 * =======================================
+	 */
+	public PVector getLoc() {
+		return loc;
+	}
+
+	public void setLoc(PVector loc) {
+		this.loc = loc;
+	}
+	//============================================
 }
