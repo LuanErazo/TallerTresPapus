@@ -6,35 +6,29 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
-import com.leapmotion.leap.Leap;
 import ddf.minim.Minim;
-import de.voidplus.leapmotion.Hand;
-import de.voidplus.leapmotion.LeapMotion;
 
 public class Logica {
 
 	private PApplet app;
-	private LeapMotion leap;
 	private Carga datos;
 	private Player jugador;
-	private Hand der;
-	private Hand izq;
 	private PVector v;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
-	private int cambio = 2;
+	private int cambio = 3;
 	private Enemigo en;
 	private PFont fuente;
 	private ArrayList<Proyectil> proyectiles;
 
 	// Aqui van todas las variables u objetos de prueba
 	private Proyectil bala;
+	private Main main;
 
-	public Logica() {
+	public Logica(Main main) {
 		app = Main.app;
+		this.main = main;
 		subirObjetos();
 		proyectiles = new ArrayList<Proyectil>();
-		der = leap.getRightHand();
-		izq = leap.getLeftHand();
 
 		CargaImg();
 
@@ -58,7 +52,6 @@ public class Logica {
 	 */
 	private void subirObjetos() {
 		datos = new Carga();
-		leap = new LeapMotion(app);
 		jugador = new Player(this);
 		en = new Enemigo();
 		bala = new Proyectil();
@@ -85,8 +78,7 @@ public class Logica {
 
 			break;
 		case 2:
-			
-			Carga.cancionDos.play();
+
 			app.image(fondoCarro, 0, 0);
 
 			break;
@@ -95,17 +87,16 @@ public class Logica {
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
-			//Carga.fft.forward(Carga.cancion.mix);
+			// Carga.fft.forward(Carga.cancion.mix);
 			Carga.cancion.play();
-			if (proyectiles.size() >0) {
+			if (proyectiles.size() > 0) {
 				for (Proyectil proyectil : proyectiles) {
 					proyectil.display();
 				}
-				
+
 			}
 			break;
 		}
-		leapMotionPlz();
 		// jugador.mover(izq.getStabilizedPosition());
 		jugador.display();
 		// System.out.println(izq.getPalmPosition().x + " " +
@@ -114,25 +105,18 @@ public class Logica {
 
 	}
 
+	
+	
 	private void timer() {
 		if (app.frameCount % 60 == 0) {
 			proyectiles.add(en.tirarBomba());
 		}
 	}
 
-	public void leapMotionPlz() {
-		int fps = leap.getFrameRate();
-		for (Hand hand : leap.getHands()) {
-			PVector handStabilized = hand.getStabilizedPosition();
-			hand.draw();
-			app.ellipse(handStabilized.x, handStabilized.y, 40, 40);
-			if (handStabilized != null) {
-				v = handStabilized;					
-			}
-		}
-	}
-	
-	public PVector vectorLeap(){
+
+
+
+	public PVector vectorLeap() {
 		return v;
 	}
 
@@ -141,20 +125,7 @@ public class Logica {
 	}
 
 	private void clicked() {
-		/**
-		 * areas sensibles para los cambos de pantalla
-		 */
-		if (app.mouseX > 495 && app.mouseX < 706 && app.mouseY > 524 && app.mouseY < 604 && cambio == 0) {
-			cambio += 1;
-		}
-		
-		if (app.mouseX > 1030 && app.mouseX < 1168 && app.mouseY > 70 && app.mouseY < 124 && cambio == 1) {
-			cambio += 1;
-		}
-		
-		if (app.mouseX > 58 && app.mouseX < 192 && app.mouseY > 574 && app.mouseY < 628 && cambio == 2) {
-			cambio += 1;
-		}
+
 	}
 
 	private void mover() {
