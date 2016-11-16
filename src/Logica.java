@@ -78,8 +78,11 @@ public class Logica {
 		case 2:
 
 			//Carga.cancionDos.play();
-			ca.display();
+			/*
+			 * carga el metodo qie me pinta en el primer minijuego
+			 */
 			app.image(fondoCarro, 0, 0);
+			ca.display();
 
 			break;
 		case 3:

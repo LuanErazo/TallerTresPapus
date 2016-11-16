@@ -1,45 +1,39 @@
 import java.awt.Color;
 
 import processing.core.PApplet;
+import processing.core.PImage;
+import sun.security.timestamp.TimestampToken;
 
 public class Carro {
 	private PApplet app;
 	int cellsize = 2; // Dimensions of each cell in the grid
 	int cols, rows;
+	private PImage carro;
 
 	public Carro() {
 		app = Main.app;
+		carro = Carga.carro;
 	}
 	
 	public void display(){
-		for ( int i = 0; i < cols;i++) {
-		    // Begin loop for rows
-		    for ( int j = 0; j < rows;j++) {
-		      int x = i*cellsize + cellsize/2; // x position
-		      int y = j*cellsize + cellsize/2; // y position
-		      int loc = x + y*app.width;           // Pixel array location
-		      int c = Carga.carro.pixels[loc];       // Grab the color
-		      // Calculate a z position as a function of mouseX and pixel brightness
-		      float z = (float) ((app.mouseX/(float)app.width) * brightness(Carga.carro.pixels[loc]) - 100.0);
-		      // Translate to the location, set fill and stroke, and draw the rect
-		      app.pushMatrix();
-		      app.translate(x,y,z);
-		      app.fill(c);
-		      app.noStroke();
-		      app.rectMode(app.CENTER);
-		      app.rect(0,0,cellsize,cellsize);
-		      app.popMatrix();
-		    }
-		  }
-	}
-	
-	private float brightness(int R) {
-		return 0;
+		/*
+		 * cargo las imagenes del carro y sus varaciones
+		 */
+		app.image(carro, app.width/2, app.height/2);
+		pixels();
+		pixelsUno();
+		PixelsDos();
+		
 	}
 
 	public void pixels(){
-		
-		
+		/**
+		 * método pixel que me cambia el color de la imagen
+		 */
+		if (app.mouseX > app.width/2 && app.mouseX < app.width) {
+			app.tint(255, 100, 50);
+			app.image(carro, app.width/2, app.height/2);
+		}
 	}
 	
 	private void pixelsUno(){
