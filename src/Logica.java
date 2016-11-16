@@ -94,12 +94,12 @@ public class Logica {
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
-			if (proyectiles.size() >0) {
+			//if (proyectiles.size() >0) {//sobra
 				for (Proyectil proyectil : proyectiles) {
 					proyectil.display();
 				}
 				
-			}
+			//}
 			break;
 		}
 		leapMotionPlz();

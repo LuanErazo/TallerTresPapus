@@ -79,7 +79,6 @@ public class Enemigo extends Thread {
 		}
 		app.image(enemigo, 0, 0);
 		app.popMatrix();
-
 	}
 
 	public Proyectil tirarBomba() {

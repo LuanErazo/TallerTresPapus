@@ -36,7 +36,7 @@ public class Proyectil {
 		}
 		if (pos.y >= app.height) {
 			// esto reduce la velocidad de rebote si el elemento toca el piso
-			vel.y = vel.y * - 0.95f;
+			vel.y = vel.y * - 0.5f;
 			pos.y = app.height;
 		}
 	}
