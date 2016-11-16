@@ -90,9 +90,12 @@ public class Logica {
 
 			break;
 		case 3:
+
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
+			//Carga.fft.forward(Carga.cancion.mix);
+			Carga.cancion.play();
 			if (proyectiles.size() >0) {
 				for (Proyectil proyectil : proyectiles) {
 					proyectil.display();

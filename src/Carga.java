@@ -1,3 +1,6 @@
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PShape;
@@ -14,6 +17,12 @@ public class Carga {
 	public static PImage fondoEnemigo;
 	public static PImage instrucciones;
 	public static PImage inicio;
+	
+	//parte de sonido
+	
+	public static Minim minim;
+	public static AudioPlayer cancion;
+	public static FFT fft;
 
 	public Carga() {
 		app = Main.app;
@@ -27,6 +36,14 @@ public class Carga {
 		fondoEnemigo = app.loadImage("../data/pantallaCuatro.png");
 		instrucciones = app.loadImage("../data/pantallaDos.png");
 		inicio = app.loadImage("../data/pantallaUno.png");
+		
+		//carga del audio
+		
+		minim = new Minim(app);
+		cancion = minim.loadFile("../data/Cancion.mp3", 512);
+		System.out.println(cancion);
+		System.out.println(cancion.bufferSize()+"  "+cancion.sampleRate());
+		fft = new FFT(cancion.bufferSize(),cancion.sampleRate());
 
 	}
 
