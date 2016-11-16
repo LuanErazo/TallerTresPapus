@@ -21,7 +21,7 @@ public class Logica {
 	private Hand izq;
 	private PVector v;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
-	private int cambio = 3;
+	private int cambio = 2;
 	private Enemigo en;
 	private PFont fuente;
 	private ArrayList<Proyectil> proyectiles;
