@@ -57,13 +57,6 @@ public class Logica {
 		bala = new Proyectil();
 	}
 
-	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
-		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
-			return true;
-		}
-		return false;
-	}
-
 	public void draww() {
 		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
@@ -83,7 +76,6 @@ public class Logica {
 
 			break;
 		case 3:
-
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
@@ -95,17 +87,13 @@ public class Logica {
 				}
 
 			}
+			jugador.display();
 			break;
 		}
 		// jugador.mover(izq.getStabilizedPosition());
-		jugador.display();
-		// System.out.println(izq.getPalmPosition().x + " " +
-		// izq.getPalmPosition().y);
-		HUD();
-
 	}
 
-	
+
 	
 	private void timer() {
 		if (app.frameCount % 60 == 0) {
@@ -113,11 +101,14 @@ public class Logica {
 		}
 	}
 
+	public void paraLeap(){
+		
+	}
 
+	public void vectorLeap(PVector v) {
+		jugador.mover(v);
 
-
-	public PVector vectorLeap() {
-		return v;
+		
 	}
 
 	public void MinimUso() {
@@ -145,8 +136,11 @@ public class Logica {
 
 	}
 
-	private void HUD() {
-
+	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
+		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
+			return true;
+		}
+		return false;
 	}
 
 }
