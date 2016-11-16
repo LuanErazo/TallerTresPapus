@@ -22,6 +22,7 @@ public class Carga {
 	
 	public static Minim minim;
 	public static AudioPlayer cancion;
+	public static AudioPlayer cancionDos;
 	public static FFT fft;
 
 	public Carga() {
@@ -41,6 +42,7 @@ public class Carga {
 		
 		minim = new Minim(app);
 		cancion = minim.loadFile("../data/Cancion.mp3", 512);
+		cancionDos = minim.loadFile("../data/cancionDos.mp3");
 		System.out.println(cancion);
 		System.out.println(cancion.bufferSize()+"  "+cancion.sampleRate());
 		fft = new FFT(cancion.bufferSize(),cancion.sampleRate());

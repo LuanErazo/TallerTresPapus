@@ -85,7 +85,8 @@ public class Logica {
 
 			break;
 		case 2:
-
+			
+			Carga.cancionDos.play();
 			app.image(fondoCarro, 0, 0);
 
 			break;
