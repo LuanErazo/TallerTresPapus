@@ -14,8 +14,9 @@ public class Logica {
 	private Carga datos;
 	private Player jugador;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
-	private int cambio = 0;
+	private int cambio = 2;
 	private Enemigo en;
+	private Carro ca;
 	private PFont fuente;
 	private ArrayList<Proyectil> proyectiles;
 
@@ -53,6 +54,7 @@ public class Logica {
 		datos = new Carga();
 		jugador = new Player(this);
 		en = new Enemigo();
+		ca = new Carro();
 		bala = new Proyectil();
 	}
 
@@ -71,10 +73,10 @@ public class Logica {
 			
 			break;
 		case 2:
-
 			app.image(fondoCarro, 0, 0);
-
+			ca.display(127);
 			break;
+			
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
