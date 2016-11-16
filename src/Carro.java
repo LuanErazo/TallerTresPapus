@@ -6,7 +6,6 @@ import sun.security.timestamp.TimestampToken;
 
 public class Carro {
 	private PApplet app;
-	int cellsize = 2; // Dimensions of each cell in the grid
 	int mira = 0;
 	private PImage carro, carroPixel;
 
@@ -31,13 +30,13 @@ public class Carro {
 				float valorB = app.blue(colorActual);
 				float promedio = (valorR + valorG + valorB)/3;
 				
-				float distMouse = PApplet.dist(app.mouseX, app.mouseY, i, j);
-				if (distMouse < 500) {
+				float distMouse = PApplet.dist(app.mouseX, app.mouseY, j, i);
+				if (distMouse < 100) {
 					carroPixel.pixels[loc] = app.color(
-							PApplet.map(distMouse, 0, 500, valorR, 0),
-							PApplet.map(distMouse, 0, 500, valorG, 0),
-							PApplet.map(distMouse, 0, 500, valorB, 0),
-							PApplet.map(distMouse, 0, 500, 255, 0));
+							PApplet.map(distMouse, 0, 600, valorR, 0),
+							PApplet.map(distMouse, 0, 600, valorG, 0),
+							PApplet.map(distMouse, 0, 600, valorB, 0),
+							PApplet.map(distMouse, 0, 600, 255, 0));
 				} else{
 					carroPixel.pixels[loc] = app.color(promedio);
 				}
@@ -77,31 +76,6 @@ public class Carro {
 		}
 		
 	}
-	
-	private void pixelsUno(){
-		/**
-		 * método pixel que me cambia el color de la imagen
-		 */
-		if (app.mouseX > app.width/2 && app.mouseX < app.width && mira == 1) {
-			app.tint(100, 200, 50);
-			app.image(carro, app.width/2, app.height/2);
-		} else{
-			app.noTint();
-		}
-	}
-	
-	private void PixelsDos(){
-		/**
-		 * método pixel que me cambia el color de la imagen
-		 */
-		if (app.mouseX > app.width/2 && app.mouseX < app.width && mira ==  2) {
-			app.tint(10, 20, 220);
-			app.image(carro, app.width/2, app.height/2);
-		} else{
-			app.noTint();
-		}
-	}
-	
-	
+		
 }
 
