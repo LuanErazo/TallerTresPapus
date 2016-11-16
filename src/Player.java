@@ -9,11 +9,13 @@ public class Player extends Thread {
 	private PVector pos;
 	private int puntaje;
 	private PImage jugador;
+	private Logica log;
 
-	public Player(PVector nVector) {
+	public Player(Logica log) {
 		app = Main.app;
+		this.log = log;
 		jugador = Carga.player;
-		pos = new PVector(0,0);
+		pos = log.vectorLeap();
 
 		start();
 	}
@@ -26,9 +28,9 @@ public class Player extends Thread {
 	public void run() {
 		while (true) {
 			try {
-
-			} catch (Exception e) {
-				// TODO: handle exception
+				mover(log.vectorLeap());
+			} catch (NullPointerException e) {
+				System.out.println("crack");
 			}
 		}
 	}

@@ -35,7 +35,6 @@ public class Logica {
 		proyectiles = new ArrayList<Proyectil>();
 		der = leap.getRightHand();
 		izq = leap.getLeftHand();
-		v = new PVector(100, 100);
 
 		CargaImg();
 
@@ -60,7 +59,7 @@ public class Logica {
 	private void subirObjetos() {
 		datos = new Carga();
 		leap = new LeapMotion(app);
-		jugador = new Player(v);
+		jugador = new Player(this);
 		en = new Enemigo();
 		bala = new Proyectil();
 	}
@@ -94,12 +93,12 @@ public class Logica {
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
-			//if (proyectiles.size() >0) {//sobra
+			if (proyectiles.size() >0) {
 				for (Proyectil proyectil : proyectiles) {
 					proyectil.display();
 				}
 				
-			//}
+			}
 			break;
 		}
 		leapMotionPlz();
@@ -121,13 +120,14 @@ public class Logica {
 		int fps = leap.getFrameRate();
 		for (Hand hand : leap.getHands()) {
 			PVector handStabilized = hand.getStabilizedPosition();
-			hand.draw();
-			app.pushMatrix();
-			app.translate(handStabilized.x, handStabilized.y, handStabilized.z);
-			app.lights();
-			app.sphere(50);
-			app.popMatrix();
+//			hand.draw();
+			app.ellipse(handStabilized.x, handStabilized.y, 40, 40);
+			v = handStabilized;	
 		}
+	}
+	
+	public PVector vectorLeap(){
+		return v;
 	}
 
 	public void MinimUso() {
