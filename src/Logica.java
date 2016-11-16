@@ -68,6 +68,7 @@ public class Logica {
 
 			app.image(instrucciones, 0, 0);
 
+			
 			break;
 		case 2:
 
