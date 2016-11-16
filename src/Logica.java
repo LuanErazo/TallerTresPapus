@@ -125,7 +125,20 @@ public class Logica {
 	}
 
 	private void clicked() {
-
+		/**
+		 * Áreas sensibles para cambios de pantalla
+		 */
+		if (app.mouseX > 495 && app.mouseX < 706 && app.mouseY > 524 && app.mouseY < 604 && cambio == 0) {
+			cambio += 1;
+		}
+		
+		if (app.mouseX > 1030 && app.mouseX < 1168 && app.mouseY > 70 && app.mouseY < 124 && cambio == 1) {
+			cambio += 1;
+		}
+		
+		if (app.mouseX > 58 && app.mouseX < 192 && app.mouseY > 574 && app.mouseY < 628 && cambio == 2) {
+			cambio += 1;
+		}
 	}
 
 	private void mover() {
