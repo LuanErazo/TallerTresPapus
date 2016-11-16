@@ -120,9 +120,11 @@ public class Logica {
 		int fps = leap.getFrameRate();
 		for (Hand hand : leap.getHands()) {
 			PVector handStabilized = hand.getStabilizedPosition();
-//			hand.draw();
+			hand.draw();
 			app.ellipse(handStabilized.x, handStabilized.y, 40, 40);
-			v = handStabilized;	
+			if (handStabilized != null) {
+				v = handStabilized;					
+			}
 		}
 	}
 	
