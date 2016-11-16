@@ -8,7 +8,7 @@ import processing.core.PVector;
 public class Enemigo extends Thread {
 
 	private PApplet app;
-	private PVector pos, vel;
+	private PVector pos, vel, posV;
 	private boolean bomba;
 	private boolean cambiodirec;
 	private int min;
@@ -24,6 +24,7 @@ public class Enemigo extends Thread {
 		enemigo = Carga.enemigo;
 		vel = new PVector(1, 0);
 		pos = new PVector(50, 100);
+		posV = pos;
 		arrayTirables();
 //		for (int i = 0; i < 10; i++) {
 //			tirables.add(preTirables.get((int)app.random(4)));
@@ -82,10 +83,10 @@ public class Enemigo extends Thread {
 	}
 
 	public Proyectil tirarBomba() {
-		for (Proyectil proyectil : preTirables) {
-			//Cambie set por get
-			proyectil.getPos();
-		}
+//		for (Proyectil proyectil : preTirables) {
+//			//Cambie set por get
+//			proyectil.setPos(pos);
+//		}
 			return preTirables.get((int) app.random(4));		
 	}
 /**

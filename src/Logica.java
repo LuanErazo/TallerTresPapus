@@ -13,9 +13,8 @@ public class Logica {
 	private PApplet app;
 	private Carga datos;
 	private Player jugador;
-	private PVector v;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
-	private int cambio = 3;
+	private int cambio = 0;
 	private Enemigo en;
 	private PFont fuente;
 	private ArrayList<Proyectil> proyectiles;
@@ -93,47 +92,65 @@ public class Logica {
 		// jugador.mover(izq.getStabilizedPosition());
 	}
 
-
-	
 	private void timer() {
 		if (app.frameCount % 60 == 0) {
 			proyectiles.add(en.tirarBomba());
 		}
 	}
 
-	public void paraLeap(){
-		
+	public void paraLeap(PVector v) {
+
+
 	}
 
 	public void vectorLeap(PVector v) {
-		jugador.mover(v);
+		if (cambio == 0) {
+			app.ellipse(v.x, v.y, 50, 50);
+		}
+		if (cambio == 1) {
+			app.ellipse(v.x, v.y, 50, 50);
 
-		
+		}
+		if (cambio == 2) {
+			app.ellipse(v.x, v.y, 50, 50);
+
+		}
+		if (cambio == 3) {
+			jugador.mover(v);
+		}
+
 	}
 
 	public void MinimUso() {
 
 	}
 
-	private void clicked() {
+	public void clicked(PVector v, String string) {
 		/**
 		 * Áreas sensibles para cambios de pantalla
-		 */
-		if (app.mouseX > 495 && app.mouseX < 706 && app.mouseY > 524 && app.mouseY < 604 && cambio == 0) {
-			cambio += 1;
-		}
-		
-		if (app.mouseX > 1030 && app.mouseX < 1168 && app.mouseY > 70 && app.mouseY < 124 && cambio == 1) {
-			cambio += 1;
-		}
-		
-		if (app.mouseX > 58 && app.mouseX < 192 && app.mouseY > 574 && app.mouseY < 628 && cambio == 2) {
-			cambio += 1;
+		 */if (string == "index") {			
+			 if (v.x > 495 && v.x < 706 && v.y > 524 && v.y < 604 && cambio == 0) {
+				 cambio += 1;
+			 }
+			 
+			 if (v.x > 1030 && v.x < 1168 && v.y > 70 && v.y < 124 && cambio == 1) {
+				 cambio += 1;
+			 }
+			 
+			 if (v.x > 58 && v.x < 192 && v.y > 574 && v.y < 628 && cambio == 2) {
+				 cambio += 1;
+			 }
 		}
 	}
 
 	private void mover() {
 
+	}
+	
+	
+
+	public int getCambio() {
+		return cambio;
 	}
 
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {

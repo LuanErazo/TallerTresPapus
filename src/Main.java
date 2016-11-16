@@ -33,8 +33,7 @@ public class Main extends PApplet {
 		int fps = leap.getFrameRate();
 		for (Hand hand : leap.getHands()) {
 			PVector handStabilized = hand.getStabilizedPosition();
-			hand.draw();
-			app.ellipse(handStabilized.x, handStabilized.y, 40, 40);
+//			hand.draw();
 			log.vectorLeap(handStabilized);
 		}
 	}
@@ -51,6 +50,10 @@ public class Main extends PApplet {
 		long duration = g.getDuration();
 		float durationSeconds = g.getDurationInSeconds();
 
+		for (Hand hand : g.getHands()) {
+			PVector v = hand.getStabilizedPosition();
+			log.clicked(v, finger.getTypeName());
+		}
 		System.out.println("KeyTapGesture: " + id);
 	}
 
