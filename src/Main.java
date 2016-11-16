@@ -1,5 +1,4 @@
 import de.voidplus.leapmotion.Finger;
-import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.KeyTapGesture;
 import de.voidplus.leapmotion.LeapMotion;
@@ -11,6 +10,7 @@ public class Main extends PApplet {
 	static public PApplet app;
 	Logica log;
 	LeapMotion leap;
+	Hand handD;
 
 	public static void main(String[] args) {
 		PApplet.main("Main");
@@ -27,19 +27,22 @@ public class Main extends PApplet {
 		log = new Logica(this);
 		leap = new LeapMotion(app);
 		leap.allowGestures();
-
 	}
-	
+
 	public void leapMotionPlz() {
 		int fps = leap.getFrameRate();
 		for (Hand hand : leap.getHands()) {
 			PVector handStabilized = hand.getStabilizedPosition();
 			hand.draw();
 			app.ellipse(handStabilized.x, handStabilized.y, 40, 40);
-
+			log.vectorLeap(handStabilized);
 		}
 	}
 	
+	public Hand getHand(){
+		return handD;
+	}
+
 	public void leapOnKeyTapGesture(KeyTapGesture g) {
 		int id = g.getId();
 		Finger finger = g.getFinger();

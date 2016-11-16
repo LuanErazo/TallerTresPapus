@@ -57,13 +57,6 @@ public class Logica {
 		bala = new Proyectil();
 	}
 
-	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
-		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
-			return true;
-		}
-		return false;
-	}
-
 	public void draww() {
 		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
@@ -84,7 +77,6 @@ public class Logica {
 
 			break;
 		case 3:
-
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
 			timer();
@@ -96,17 +88,13 @@ public class Logica {
 				}
 
 			}
+			jugador.display();
 			break;
 		}
 		// jugador.mover(izq.getStabilizedPosition());
-		jugador.display();
-		// System.out.println(izq.getPalmPosition().x + " " +
-		// izq.getPalmPosition().y);
-		HUD();
-
 	}
 
-	
+
 	
 	private void timer() {
 		if (app.frameCount % 60 == 0) {
@@ -114,11 +102,14 @@ public class Logica {
 		}
 	}
 
+	public void paraLeap(){
+		
+	}
 
+	public void vectorLeap(PVector v) {
+		jugador.mover(v);
 
-
-	public PVector vectorLeap() {
-		return v;
+		
 	}
 
 	public void MinimUso() {
@@ -126,15 +117,31 @@ public class Logica {
 	}
 
 	private void clicked() {
-
+		/**
+		 * Áreas sensibles para cambios de pantalla
+		 */
+		if (app.mouseX > 495 && app.mouseX < 706 && app.mouseY > 524 && app.mouseY < 604 && cambio == 0) {
+			cambio += 1;
+		}
+		
+		if (app.mouseX > 1030 && app.mouseX < 1168 && app.mouseY > 70 && app.mouseY < 124 && cambio == 1) {
+			cambio += 1;
+		}
+		
+		if (app.mouseX > 58 && app.mouseX < 192 && app.mouseY > 574 && app.mouseY < 628 && cambio == 2) {
+			cambio += 1;
+		}
 	}
 
 	private void mover() {
 
 	}
 
-	private void HUD() {
-
+	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
+		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
+			return true;
+		}
+		return false;
 	}
 
 }
