@@ -58,5 +58,16 @@ public class Proyectil {
 	public void setPos(PVector loc) {
 		this.pos = loc;
 	}
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+
+	
+	
 	// ============================================
 }

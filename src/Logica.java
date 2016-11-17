@@ -14,7 +14,7 @@ public class Logica {
 	private Carga datos;
 	private Player jugador;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
-	private int cambio = 2;
+	private int cambio;
 	private Enemigo en;
 	private Carro ca;
 	private PFont fuente;
@@ -33,7 +33,9 @@ public class Logica {
 		CargaImg();
 
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
+		app.textFont(fuente);
 
+		cambio = 3;
 	}
 
 	/**
@@ -70,13 +72,12 @@ public class Logica {
 
 			app.image(instrucciones, 0, 0);
 
-			
 			break;
 		case 2:
 			app.image(fondoCarro, 0, 0);
 			ca.display(127);
 			break;
-			
+
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
@@ -89,6 +90,8 @@ public class Logica {
 
 			}
 			jugador.display();
+			jugador.moverMouse();
+			jugador.sumarPuntaje(proyectiles);
 			break;
 		}
 		// jugador.mover(izq.getStabilizedPosition());
@@ -101,7 +104,6 @@ public class Logica {
 	}
 
 	public void paraLeap(PVector v) {
-
 
 	}
 
@@ -130,26 +132,25 @@ public class Logica {
 	public void clicked(PVector v, String string) {
 		/**
 		 * Áreas sensibles para cambios de pantalla
-		 */if (string == "index") {			
-			 if (v.x > 495 && v.x < 706 && v.y > 524 && v.y < 604 && cambio == 0) {
-				 cambio += 1;
-			 }
-			 
-			 if (v.x > 1030 && v.x < 1168 && v.y > 70 && v.y < 124 && cambio == 1) {
-				 cambio += 1;
-			 }
-			 
-			 if (v.x > 58 && v.x < 192 && v.y > 574 && v.y < 628 && cambio == 2) {
-				 cambio += 1;
-			 }
+		 */
+		if (string == "index") {
+			if (v.x > 495 && v.x < 706 && v.y > 524 && v.y < 604 && cambio == 0) {
+				cambio += 1;
+			}
+
+			if (v.x > 1030 && v.x < 1168 && v.y > 70 && v.y < 124 && cambio == 1) {
+				cambio += 1;
+			}
+
+			if (v.x > 58 && v.x < 192 && v.y > 574 && v.y < 628 && cambio == 2) {
+				cambio += 1;
+			}
 		}
 	}
 
 	private void mover() {
 
 	}
-	
-	
 
 	public int getCambio() {
 		return cambio;

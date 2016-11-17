@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import jdk.net.NetworkPermission;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -25,15 +26,33 @@ public class Player {
 		pos.x = leapV.x;
 	}
 
+	public void moverMouse(){
+		pos.x = app.mouseX;
+	}
 
 	public void display() {
 		app.pushMatrix();
 		app.translate(pos.x, pos.y);
 		app.image(jugador, 0, 0);
+		app.ellipse(0, 0, 100, 100);
 		app.popMatrix();
+		app.textAlign(PConstants.CENTER, PConstants.CENTER);
+		app.text(puntaje, app.width/2, 80);
 	}
 
 	public void sumarPuntaje(ArrayList<Proyectil> lista) {
+			if (lista.size() >0) {
+				for (int i = 0; i < lista.size(); i++) {
+					Proyectil proyectil = lista.get(i);
+					if (Logica.validar(pos.x, pos.y, proyectil.getPos().x, proyectil.getPos().y, 100)) {
+						puntaje += proyectil.getPuntaje();
+						proyectil.setPuntaje(0);
+						lista.remove(i);
+					}
+					
+					
+				}				
+			}
 
 	}
 
@@ -44,6 +63,12 @@ public class Player {
 	public void setPos(PVector pos) {
 		this.pos = pos;
 	}
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+	
+	
 	
 	
 }
