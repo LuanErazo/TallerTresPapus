@@ -1,8 +1,8 @@
-import javax.sql.rowset.serial.SerialStruct;
 
 public class Sparkie extends Proyectil {
 
-	public Sparkie() {
+	public Sparkie(Enemigo en) {
+		super(en);
 		selecta = Carga.sparkie;
 		puntaje = 5;
 	}

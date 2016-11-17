@@ -8,27 +8,21 @@ import processing.core.PVector;
 public class Enemigo extends Thread {
 
 	private PApplet app;
-	private PVector pos, vel, posV;
-	private boolean bomba;
+	private PVector pos, vel;
 	private boolean cambiodirec;
-	private int min;
-//	private ArrayList<Proyectil> tirables;
+	private ArrayList<Proyectil> tirables;
 	private ArrayList<Proyectil> preTirables;
 
 	private PImage enemigo;
 
 	public Enemigo() {
 		app = Main.app;
-//		tirables = new ArrayList<Proyectil>();
+		tirables = new ArrayList<Proyectil>();
 		preTirables = new ArrayList<Proyectil>();
 		enemigo = Carga.enemigo;
 		vel = new PVector(1, 0);
 		pos = new PVector(50, 100);
-		posV = pos;
 		arrayTirables();
-//		for (int i = 0; i < 10; i++) {
-//			tirables.add(preTirables.get((int)app.random(4)));
-//		}
 		start();
 	}
 
@@ -37,13 +31,12 @@ public class Enemigo extends Thread {
 	 * probabilidades sean correctas
 	 */
 	private void arrayTirables() {
-		preTirables.add(new Bomba());
-		preTirables.add(new Bomba());
-		preTirables.add(new Sparkie());
-		preTirables.add(new Sparkie());
-		preTirables.add(new SparkieReal());
-		
-		
+		  
+		preTirables.add(new Bomba(this));
+		preTirables.add(new Bomba(this));
+		preTirables.add(new Sparkie(this));
+		preTirables.add(new Sparkie(this));
+		preTirables.add(new SparkieReal(this));		
 	}
 
 	@Override
@@ -80,23 +73,42 @@ public class Enemigo extends Thread {
 		}
 		app.image(enemigo, 0, 0);
 		app.popMatrix();
+		contador();
 	}
 
 	public Proyectil tirarBomba() {
-//		for (Proyectil proyectil : preTirables) {
-//			//Cambie set por get
-//			proyectil.setPos(pos);
-//		}
-			return preTirables.get((int) app.random(4));		
+
+			return tirables.get((int) app.random(tirables.size()-1));		
 	}
 /**
  * metodo que agrega cada segundo un nuevo elemtno para que el enemigo tire
  */
 	public void contador() {
-//		if (app.frameCount % 60 * 1 == 0) {
-//			tirables.add(preTirables.get((int) app.random(4)));
-//		}
-
+		if (app.frameCount % 60*1 == 0) {
+			 int ran = (int) app.random(preTirables.size());
+			tirables.add(preTirables.get(ran));
+			preTirables.remove(ran);
+		}
+		if (app.frameCount % 60*1 == 0) {
+			preTirables.add(new Bomba(this));
+		}
+		if (app.frameCount % 60*2 == 0) {
+			preTirables.add(new Sparkie(this));
+		}
+		if (app.frameCount % 60*4 == 0) {
+			preTirables.add(new SparkieReal(this));
+		}
 	}
+
+public ArrayList<Proyectil> getTirables() {
+	return tirables;
+}
+
+public PVector getPos() {
+	return pos;
+}
+	
+	
+	
 
 }

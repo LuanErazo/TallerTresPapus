@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-import jdk.net.NetworkPermission;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -11,13 +10,9 @@ public class Player {
 	private PVector pos;
 	private int puntaje;
 	private PImage jugador;
-	private Logica log;
-	private float mx;
-	private float my;
 
-	public Player(Logica log) {
+	public Player() {
 		app = Main.app;
-		this.log = log;
 		pos = new PVector(500,600);
 		jugador = Carga.player;
 	}
@@ -34,7 +29,6 @@ public class Player {
 		app.pushMatrix();
 		app.translate(pos.x, pos.y);
 		app.image(jugador, 0, 0);
-		app.ellipse(0, 0, 100, 100);
 		app.popMatrix();
 		app.textAlign(PConstants.CENTER, PConstants.CENTER);
 		app.text(puntaje, app.width/2, 80);
@@ -44,10 +38,10 @@ public class Player {
 			if (lista.size() >0) {
 				for (int i = 0; i < lista.size(); i++) {
 					Proyectil proyectil = lista.get(i);
-					if (Logica.validar(pos.x, pos.y, proyectil.getPos().x, proyectil.getPos().y, 100)) {
+					if (Logica.validar(pos.x, pos.y, proyectil.getPos().x, proyectil.getPos().y, 80)) {
 						puntaje += proyectil.getPuntaje();
 						proyectil.setPuntaje(0);
-						lista.remove(i);
+						lista.remove(proyectil);
 					}
 					
 					

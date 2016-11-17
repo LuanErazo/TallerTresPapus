@@ -1,5 +1,3 @@
-import com.sun.javafx.geom.PickRay;
-
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -12,19 +10,23 @@ public class Proyectil {
 	private PVector vel;// velocidad
 	private PVector gravity;// gravedad
 	protected PImage selecta;
+	protected Enemigo en;
 
 	protected int puntaje;
 
-	public Proyectil() {
+	public Proyectil(Enemigo en) {
+		this.en = en;
 		app = Main.app;
 		// Cargue la img
 		vel = new PVector(1.5f, 1.5f); // La f al final le dice al programa que es un flotante, sin necesidad de cast
-		pos = new PVector();
+		pos = new PVector(-10,-10);
 		gravity = new PVector(0, 0.2f);
 
 	}
 
 	public void mover() {
+		
+
 		// agrega velocidad a la posicion
 		pos.add(vel);
 		// agrega gravedad a la velocidad
@@ -42,10 +44,10 @@ public class Proyectil {
 	}
 
 	public void display() {
-		mover();
 		// agregue esto
 		app.imageMode(PConstants.CENTER);
 		app.image(selecta, pos.x, pos.y);
+		mover();
 	}
 
 	/*

@@ -19,18 +19,14 @@ public class Logica {
 	private Enemigo en;
 	private Carro ca;
 	private PFont fuente;
-	private ArrayList<Proyectil> proyectiles;
 
 	// Aqui van todas las variables u objetos de prueba
-	private Proyectil bala;
 	private Main main;
 
 	public Logica(Main main) {
 		app = Main.app;
 		this.main = main;
 		subirObjetos();
-		proyectiles = new ArrayList<Proyectil>();
-
 		CargaImg();
 
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
@@ -57,15 +53,12 @@ public class Logica {
 	 */
 	private void subirObjetos() {
 		datos = new Carga();
-		jugador = new Player(this);
+		jugador = new Player();
 		en = new Enemigo();
 		ca = new Carro();
-		bala = new Proyectil();
 	}
 
 	public void draww() {
-		System.out.println("x" + app.mouseX);
-		System.out.println(app.mouseY);
 		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
 		case 0:
@@ -86,30 +79,21 @@ public class Logica {
 		case 3:
 			app.image(fondoEnemigo, 0, 0);
 			en.display();
-			timer();
 			Carga.cancion.play();
-			if (proyectiles.size() > 0) {
-				for (Proyectil proyectil : en.getTirables()) {
+			if (en.getTirables().size() > 0) {
+				for (int i = 0; i < en.getTirables().size(); i++) {
+					Proyectil proyectil = en.getTirables().get(i);
 					proyectil.display();
+//					proyectil.setPos(en.get);
 				}
-
 			}
 			jugador.display();
 			jugador.moverMouse();
-			jugador.sumarPuntaje(proyectiles);
+			jugador.sumarPuntaje(en.getTirables());
 			break;
 		}
 	}
 
-	private void timer() {
-		if (app.frameCount % 60 == 0) {
-			proyectiles.add(en.tirarBomba());
-		}
-	}
-
-	public void paraLeap(PVector v) {
-
-	}
 
 	public void vectorLeap(PVector v) {
 		if (cambio == 0) {
@@ -130,9 +114,6 @@ public class Logica {
 
 	}
 
-	public void MinimUso() {
-
-	}
 
 	public void clicked(PVector v, String string) {
 		/**
@@ -162,22 +143,26 @@ public class Logica {
 		}
 	}
 
-	private void mover() {
-
-	}
 
 	public int getCambio() {
 		return cambio;
 	}
-/**
- * sirve para validar distancias en cualquier clase
- * @param XUno posicion X del elemento uno
- * @param YUno posicion Y del elemento uno
- * @param XDos posion X del elemento dos
- * @param YDos posicion Y del elemento dos
- * @param dist rango minimo donde se tocan los dos elementos
- * @return si el elemento 2 esta a la distancia (dist) del elemento uno
- */
+
+	/**
+	 * sirve para validar distancias en cualquier clase
+	 * 
+	 * @param XUno
+	 *            posicion X del elemento uno
+	 * @param YUno
+	 *            posicion Y del elemento uno
+	 * @param XDos
+	 *            posion X del elemento dos
+	 * @param YDos
+	 *            posicion Y del elemento dos
+	 * @param dist
+	 *            rango minimo donde se tocan los dos elementos
+	 * @return si el elemento 2 esta a la distancia (dist) del elemento uno
+	 */
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
 		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
 			return true;

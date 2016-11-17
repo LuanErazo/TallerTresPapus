@@ -3,7 +3,6 @@ import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PImage;
-import processing.core.PShape;
 
 public class Carga {
 	private PApplet app;
