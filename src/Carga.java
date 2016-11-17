@@ -17,6 +17,7 @@ public class Carga {
 	public static PImage fondoEnemigo;
 	public static PImage instrucciones;
 	public static PImage inicio;
+	public static PImage perder;
 	
 	//parte de sonido
 	
@@ -38,6 +39,7 @@ public class Carga {
 		fondoEnemigo = app.loadImage("../data/pantallaCuatro.png");
 		instrucciones = app.loadImage("../data/pantallaDos.png");
 		inicio = app.loadImage("../data/pantallaUno.png");
+		perder = app.loadImage("../data/perder.png");
 		
 		//carga del audio
 		
