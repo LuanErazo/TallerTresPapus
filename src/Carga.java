@@ -44,8 +44,6 @@ public class Carga {
 		minim = new Minim(app);
 		cancion = minim.loadFile("../data/Cancion.mp3", 512);
 		cancionDos = minim.loadFile("../data/CancionDos.mp3", 512);
-		System.out.println(cancion);
-		System.out.println(cancion.bufferSize()+"  "+cancion.sampleRate());
 		fft = new FFT(cancion.bufferSize(),cancion.sampleRate());
 		fftDos = new FFT(cancionDos.bufferSize(),cancionDos.sampleRate());
 

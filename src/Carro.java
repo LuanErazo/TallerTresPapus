@@ -18,12 +18,13 @@ public class Carro {
 		pos = new PVector(500, 600);
 	}
 
-	public void display(float umbral) {
+	public void display(float umbral, PVector v) {
 
 		pixels(umbral);
 
 		carro.loadPixels();
 		carroPixel.loadPixels();
+	
 		for (int i = 0; i < carro.height; i++) {
 			for (int j = 0; j < carro.width; j++) {
 				int loc = j + (i * carro.width);
@@ -33,7 +34,7 @@ public class Carro {
 				float valorB = app.blue(colorActual);
 				float promedio = (valorR + valorG + valorB) / 3;
 
-				float distMouse = PApplet.dist(app.mouseX, app.mouseY, j, i);
+				float distMouse = PApplet.dist(v.x, v.y, j, i);
 				if (distMouse < 100) {
 					carroPixel.pixels[loc] = app.color(PApplet.map(distMouse, 0, 600, valorR, 0),
 							PApplet.map(distMouse, 0, 600, valorG, 0), PApplet.map(distMouse, 0, 600, valorB, 0),
@@ -44,7 +45,10 @@ public class Carro {
 
 			}
 		}
-		carroPixel.updatePixels();
+		app.pushMatrix();
+		app.translate(app.width/2 - 180, app.height/2 - 50);
+		//carroPixel.updatePixels();
+		app.popMatrix();
 		app.image(carroPixel, app.width / 2 - 180, app.height / 2 - 50);
 	}
 

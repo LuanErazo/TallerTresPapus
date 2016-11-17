@@ -35,7 +35,7 @@ public class Logica {
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 		app.textFont(fuente);
 
-		cambio = 3;
+		cambio = 2;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Logica {
 			break;
 		case 2:
 			app.image(fondoCarro, 0, 0);
-			ca.display(127);
+			ca.display(127, ca.pos);
 			break;
 
 		case 3:
@@ -116,6 +116,7 @@ public class Logica {
 
 		}
 		if (cambio == 2) {
+			ca.mover(v);
 			app.ellipse(v.x, v.y, 50, 50);
 
 		}
