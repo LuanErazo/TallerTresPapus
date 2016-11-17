@@ -43,7 +43,7 @@ public class Player {
 						proyectil.setPuntaje(0);
 						lista.remove(proyectil);
 					}
-					
+				
 					
 				}				
 			}

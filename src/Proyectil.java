@@ -33,7 +33,7 @@ public class Proyectil {
 		vel.add(gravity);
 
 		// esta joda hace que la esfera o el elemento, rebote en las esquinas
-		if ((pos.x > app.width) || (pos.x < 0)) {
+		if ((pos.x >= app.width) || (pos.x < 0)) {
 			vel.x = vel.x * -1;
 		}
 		if (pos.y >= app.height) {

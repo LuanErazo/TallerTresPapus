@@ -84,16 +84,22 @@ public class Logica {
 				for (int i = 0; i < en.getTirables().size(); i++) {
 					Proyectil proyectil = en.getTirables().get(i);
 					proyectil.display();
-//					proyectil.setPos(en.get);
+					// proyectil.setPos(en.get);
 				}
 			}
 			jugador.display();
 			jugador.moverMouse();
 			jugador.sumarPuntaje(en.getTirables());
+			if (jugador.getPuntaje() < 0) {
+				cambio = 4;
+			}
+
+			break;
+		case 4:
+			app.image(perder, 0, 0);
 			break;
 		}
 	}
-
 
 	public void vectorLeap(PVector v) {
 		if (cambio == 0) {
@@ -113,7 +119,6 @@ public class Logica {
 		}
 
 	}
-
 
 	public void clicked(PVector v, String string) {
 		/**
@@ -142,7 +147,6 @@ public class Logica {
 			}
 		}
 	}
-
 
 	public int getCambio() {
 		return cambio;
