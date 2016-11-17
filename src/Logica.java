@@ -13,7 +13,7 @@ public class Logica {
 	private PApplet app;
 	private Carga datos;
 	private Player jugador;
-	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba, perder;
+	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba;
 	private int cambio, cambioDos;
 	private boolean chi = false, chiDos = false, chiTres = false;
 	private Enemigo en;
@@ -48,7 +48,6 @@ public class Logica {
 		instrucciones = Carga.instrucciones;
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
-		perder = Carga.perder;
 		bomba = Carga.bomba;
 	}
 
