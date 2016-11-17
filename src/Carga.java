@@ -39,7 +39,7 @@ public class Carga {
 		fondoEnemigo = app.loadImage("../data/pantallaCuatro.png");
 		instrucciones = app.loadImage("../data/pantallaDos.png");
 		inicio = app.loadImage("../data/pantallaUno.png");
-		perder = app.loadImage("../data/perder.png");
+		perder = app.loadImage("../data/perdiste.png");
 		
 		//carga del audio
 		
