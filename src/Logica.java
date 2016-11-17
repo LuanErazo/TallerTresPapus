@@ -14,7 +14,8 @@ public class Logica {
 	private Carga datos;
 	private Player jugador;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba, perder;
-	private int cambio;
+	private int cambio, cambioDos;
+	private boolean chi = false, chiDos = false, chiTres = false;
 	private Enemigo en;
 	private Carro ca;
 	private PFont fuente;
@@ -35,7 +36,8 @@ public class Logica {
 		fuente = app.createFont("Thinking_of_Betty.ttf", 40);
 		app.textFont(fuente);
 
-		cambio = 2;
+		cambio = 3;
+		cambioDos = 0;
 	}
 
 	/**
@@ -46,8 +48,8 @@ public class Logica {
 		instrucciones = Carga.instrucciones;
 		fondoCarro = Carga.fondoCarro;
 		fondoEnemigo = Carga.fondoEnemigo;
-		perder = Carga.perder;
 		bomba = Carga.bomba;
+		perder = Carga.perder;
 	}
 
 	/**
@@ -62,6 +64,8 @@ public class Logica {
 	}
 
 	public void draww() {
+		System.out.println("x" + app.mouseX);
+		System.out.println(app.mouseY);
 		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
 		case 0:
@@ -85,7 +89,7 @@ public class Logica {
 			timer();
 			Carga.cancion.play();
 			if (proyectiles.size() > 0) {
-				for (Proyectil proyectil : proyectiles) {
+				for (Proyectil proyectil : en.getTirables()) {
 					proyectil.display();
 				}
 
@@ -95,7 +99,6 @@ public class Logica {
 			jugador.sumarPuntaje(proyectiles);
 			break;
 		}
-		// jugador.mover(izq.getStabilizedPosition());
 	}
 
 	private void timer() {
@@ -147,6 +150,15 @@ public class Logica {
 			if (v.x > 58 && v.x < 192 && v.y > 574 && v.y < 628 && cambio == 2) {
 				cambio += 1;
 			}
+			if (v.x > 81 && v.x < 137 && v.y > 230 && v.y < 337 && cambio == 2 && chi == false) {
+				chi = true;
+			}
+			if (v.x > 155 && v.x < 215 && v.y > 210 && v.y < 305 && cambio == 2 && chiDos == false) {
+				chiDos = true;
+			}
+			if (v.x > 230 && v.x < 290 && v.y > 177 && v.y < 278 && cambio == 2 && chiTres == false) {
+				chiTres = true;
+			}
 		}
 	}
 
@@ -157,7 +169,15 @@ public class Logica {
 	public int getCambio() {
 		return cambio;
 	}
-
+/**
+ * sirve para validar distancias en cualquier clase
+ * @param XUno posicion X del elemento uno
+ * @param YUno posicion Y del elemento uno
+ * @param XDos posion X del elemento dos
+ * @param YDos posicion Y del elemento dos
+ * @param dist rango minimo donde se tocan los dos elementos
+ * @return si el elemento 2 esta a la distancia (dist) del elemento uno
+ */
 	public static boolean validar(float XUno, float YUno, float XDos, float YDos, float dist) {
 		if (PApplet.dist(XUno, YUno, XDos, YDos) <= dist) {
 			return true;
