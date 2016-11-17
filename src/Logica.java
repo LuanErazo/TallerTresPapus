@@ -14,7 +14,7 @@ public class Logica {
 	private Carga datos;
 	private Player jugador;
 	private PImage inicio, instrucciones, fondoCarro, fondoEnemigo, enemigo, bomba, perder;
-	private int cambio;
+	private int cambio, cambioDos;
 	private Enemigo en;
 	private Carro ca;
 	private PFont fuente;
@@ -36,6 +36,7 @@ public class Logica {
 		app.textFont(fuente);
 
 		cambio = 2;
+		cambioDos = 0;
 	}
 
 	/**
@@ -62,6 +63,8 @@ public class Logica {
 	}
 
 	public void draww() {
+		System.out.println("x" + app.mouseX);
+		System.out.println(app.mouseY);
 		app.imageMode(PConstants.CORNER);
 		switch (cambio) {
 		case 0:
@@ -146,6 +149,15 @@ public class Logica {
 
 			if (v.x > 58 && v.x < 192 && v.y > 574 && v.y < 628 && cambio == 2) {
 				cambio += 1;
+			}
+			if (v.x > 81 && v.x < 137 && v.y > 230 && v.y < 337 && cambio == 2 && cambioDos == 0) {
+				cambioDos += 1;
+			}
+			if (v.x > 155 && v.x < 215 && v.y > 210 && v.y < 305 && cambio == 2 && cambioDos == 1) {
+				cambioDos += 1;
+			}
+			if (v.x > 230 && v.x < 290 && v.y > 177 && v.y < 278 && cambio == 2 && cambioDos == 2) {
+				cambioDos += 1;
 			}
 		}
 	}
